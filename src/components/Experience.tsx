@@ -131,21 +131,56 @@ export function ShoreGallery() {
 
 export function Film() {
     const dialog = useRef<HTMLDialogElement>(null);
+    const preview = useRef<HTMLVideoElement>(null);
     const video = useRef<HTMLVideoElement>(null);
+    const resumePreview = useRef(false);
+    const [playing, setPlaying] = useState(false);
+    const [hasFrame, setHasFrame] = useState(false);
+    const source = asset('/assets/video/concept.mp4');
+
+    useEffect(() => {
+        const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const player = preview.current;
+        if (!preference.matches) void player?.play().catch(() => undefined);
+        const stopForReducedMotion = () => {
+            if (preference.matches) {
+                resumePreview.current = false;
+                player?.pause();
+            }
+        };
+        preference.addEventListener('change', stopForReducedMotion);
+        return () => preference.removeEventListener('change', stopForReducedMotion);
+    }, []);
 
     return <>
-        <button type="button" className="film-button" onClick={() => {
-            dialog.current?.showModal();
-            if (video.current) {
-                video.current.currentTime = 0;
-                void video.current.play().catch(() => undefined);
-            }
-        }}><span className="play" aria-hidden="true">▷</span> Смотреть ролик</button>
-        <dialog className="media-dialog film-dialog" ref={dialog} aria-label="Ролик из визуализаций" onClose={() => video.current?.pause()} onClick={event => {
+        <video className="hero-video" data-visible={hasFrame} ref={preview} src={source} muted playsInline loop preload="none" aria-hidden="true"
+            onPlaying={() => { setPlaying(true); setHasFrame(true); }}
+            onPause={() => setPlaying(false)}
+            onError={() => { setPlaying(false); setHasFrame(false); }} />
+        <div className="film-actions">
+            <button type="button" className="film-toggle" aria-label={playing ? 'Приостановить ролик' : 'Воспроизвести ролик'} onClick={() => {
+                const player = preview.current;
+                if (player?.paused) void player.play().catch(() => undefined);
+                else player?.pause();
+            }}><span aria-hidden="true">{playing ? 'Ⅱ' : '▷'}</span></button>
+            <button type="button" className="film-button" onClick={() => {
+                resumePreview.current = preview.current?.paused === false;
+                preview.current?.pause();
+                dialog.current?.showModal();
+                if (video.current) {
+                    video.current.currentTime = 0;
+                    void video.current.play().catch(() => undefined);
+                }
+            }}>Смотреть ролик <Arrow diagonal /></button>
+        </div>
+        <dialog className="media-dialog film-dialog" ref={dialog} aria-label="Ролик из визуализаций" onClose={() => {
+            video.current?.pause();
+            if (resumePreview.current) void preview.current?.play().catch(() => undefined);
+        }} onClick={event => {
             if (event.target === event.currentTarget) dialog.current?.close();
         }}>
             <button type="button" className="circle dialog-close" onClick={() => dialog.current?.close()} aria-label="Закрыть ролик">×</button>
-            <video ref={video} controls muted playsInline preload="none" poster={asset('/assets/images/coast.webp')} src={asset('/assets/video/concept.mp4')} />
+            <video ref={video} controls muted playsInline preload="none" poster={asset('/assets/images/coast.webp')} src={source} />
             <p>Ролик из архитектурных визуализаций UNK</p>
         </dialog>
     </>;

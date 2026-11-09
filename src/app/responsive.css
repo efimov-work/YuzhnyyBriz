@@ -19,8 +19,11 @@
     .hero-img { object-position: 51% center; }
     .hero-photo-label { bottom: 16px; left: 14px; gap: 5px; font-size: .78rem; }
     .line { width: 12px; }
-    .film-button { right: 16px; bottom: 12px; padding: 4px 8px 4px 4px; font-size: .78rem; gap: 4px; }
-    .play { width: 23px; height: 23px; font-size: 16px; }
+    .film-actions { right: 16px; bottom: 12px; gap: 4px; }
+    .film-button { padding: 4px 8px; font-size: .78rem; }
+    .film-button svg { width: 14px; }
+    .film-button, .film-toggle { min-height: 36px; }
+    .film-toggle { width: 36px; }
     .section { padding-block: 73px; }
     .section-tag { margin-bottom: 17px; }
     .project-intro, .section-heading, .location-grid, .callback-grid { grid-template-columns: 1fr; gap: 18px; }
