@@ -51,6 +51,7 @@
 }
 @media (max-width: 455px) {
     .location-note { align-items: start; flex-direction: column; }
+    .gallery-meta { flex-wrap: wrap; }
     .shore-photos .expand { width: 27px; height: 27px; right: 6px; bottom: 6px; }
     .shore-photos .expand svg { width: 14px; }
     .shore-photos figcaption { font-size: .78rem; gap: 5px; }

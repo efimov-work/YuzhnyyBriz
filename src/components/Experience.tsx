@@ -31,10 +31,41 @@ export function Motion() {
 export function Gallery() {
     const [index, setIndex] = useState(0);
     const [expanded, setExpanded] = useState(false);
+    const [autoplay, setAutoplay] = useState(true);
+    const [inView, setInView] = useState(false);
+    const [motionAllowed, setMotionAllowed] = useState(false);
+    const frame = useRef<HTMLButtonElement>(null);
     const dialog = useRef<HTMLDialogElement>(null);
     const start = useRef<number | null>(null);
     const current = gallery[index];
-    const change = (step: number) => setIndex(i => (i + step + gallery.length) % gallery.length);
+    const rotating = autoplay && inView && motionAllowed && !expanded;
+
+    useEffect(() => {
+        const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const updatePreference = () => setMotionAllowed(!preference.matches);
+        updatePreference();
+        preference.addEventListener('change', updatePreference);
+
+        const observer = new IntersectionObserver(([entry]) => setInView(entry.intersectionRatio >= 0.35), { threshold: 0.35 });
+        if (frame.current) observer.observe(frame.current);
+        return () => {
+            observer.disconnect();
+            preference.removeEventListener('change', updatePreference);
+        };
+    }, []);
+
+    useEffect(() => {
+        if (!rotating) return;
+        const timer = window.setInterval(() => {
+            if (!document.hidden) setIndex(i => (i + 1) % gallery.length);
+        }, 5000);
+        return () => window.clearInterval(timer);
+    }, [rotating]);
+
+    function change(step: number) {
+        setAutoplay(false);
+        setIndex(i => (i + step + gallery.length) % gallery.length);
+    }
 
     function open() {
         dialog.current?.showModal();
@@ -48,7 +79,7 @@ export function Gallery() {
         }
     }}>
         <div className="gallery-main">
-            <button type="button" className="gallery-frame" onClick={open} aria-label={`Увеличить: ${current.title}`}
+            <button type="button" ref={frame} className="gallery-frame" onClick={open} aria-label={`Увеличить: ${current.title}`}
                 onTouchStart={event => { start.current = event.touches[0].clientX; }}
                 onTouchEnd={event => {
                     if (start.current === null) return;
@@ -60,8 +91,9 @@ export function Gallery() {
                 <span className="expand" aria-hidden="true"><Arrow diagonal /></span>
             </button>
             <div className="gallery-meta">
-                <div aria-live="polite"><strong>{current.title}</strong><p>{current.text}</p></div>
+                <div aria-live={rotating ? "off" : "polite"}><strong>{current.title}</strong><p>{current.text}</p></div>
                 <div className="gallery-nav">
+                    {motionAllowed && <button type="button" className="circle" onClick={() => setAutoplay(value => !value)} aria-label={autoplay ? 'Приостановить смену кадров' : 'Запустить смену кадров'}><span aria-hidden="true">{autoplay ? 'Ⅱ' : '▷'}</span></button>}
                     <button type="button" className="circle previous" onClick={() => change(-1)} aria-label="Предыдущая визуализация"><Arrow /></button>
                     <span className="counter">{String(index + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}</span>
                     <button type="button" className="circle" onClick={() => change(1)} aria-label="Следующая визуализация"><Arrow /></button>
@@ -69,7 +101,7 @@ export function Gallery() {
             </div>
         </div>
         <div className="thumbs" aria-label="Выбрать визуализацию">
-            {gallery.map(({ file, title }, i) => <button type="button" key={file} aria-label={title} aria-pressed={i === index} onClick={() => setIndex(i)}>
+            {gallery.map(({ file, title }, i) => <button type="button" key={file} aria-label={title} aria-pressed={i === index} onClick={() => { setAutoplay(false); setIndex(i); }}>
                 <img src={asset(`/assets/images/thumb-${file}.webp`)} alt="" loading="lazy" />
             </button>)}
         </div>
