@@ -3,6 +3,13 @@
     .hero-figure { aspect-ratio: 2.03; border-bottom-right-radius: 72px; }
     .hero h1 { font-size: clamp(4.2rem, 11.1vw, 8rem); }
     .hero-aside { gap: 8px; }
+    .map-places svg { display: none; }
+}
+@media (max-width: 965px) {
+    .map-caption > span:first-child { display: none; }
+    .map-scroll-hint { display: inline-flex; }
+    .map-pin-project .map-pin-dot { width: 27px; height: 27px; box-shadow: 0 0 0 3px #dce69fa8; }
+    .map-pin-druzhba .map-pin-dot { width: 17px; height: 17px; }
 }
 @media (max-width: 800px) {
     .wrap { width: calc(100% - 38px); }
@@ -36,7 +43,8 @@
     .gallery-meta p { font-size: .84rem; }
     .gallery-nav { gap: 6px; }
     .gallery-nav .circle { width: 37px; height: 37px; }
-    .location-grid figure a { border-top-right-radius: 37px; }
+    .map-viewport { border-top-right-radius: 31px; }
+    .map-places { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .callback-emblem { display: none; }
     .request-form { margin-top: 12px; }
     .walk-grid { grid-template-columns: 1fr; gap: 27px; }
@@ -52,6 +60,7 @@
 @media (max-width: 455px) {
     .location-note { align-items: start; flex-direction: column; }
     .gallery-meta { flex-wrap: wrap; }
+    .map-places a { grid-template-columns: auto 1fr; }
     .shore-photos .expand { width: 27px; height: 27px; right: 6px; bottom: 6px; }
     .shore-photos .expand svg { width: 14px; }
     .shore-photos figcaption { font-size: .78rem; gap: 5px; }

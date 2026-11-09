@@ -1,6 +1,7 @@
 import { Arrow, Brand, Emblem } from '@/components/Brand';
 import { Film, Gallery, Motion, ShoreGallery } from '@/components/Experience';
 import Request from '@/components/Request';
+import LocationMap from '@/components/LocationMap';
 import { asset } from '@/lib/asset';
 import { features, mapUrl, projectSource, questions, registrySource } from '@/lib/content';
 import { jsonLd } from '@/lib/seo';
@@ -84,19 +85,16 @@ export default function Home() {
             <section className="location wrap section" id="location">
                 <div className="section-tag" data-reveal><span>04</span> Расположение</div>
                 <div className="location-grid">
+                    <h2 data-reveal>Курпаты.<br/>Между склоном и морем.</h2>
                     <div data-reveal>
-                        <h2>Курпаты.<br/>Между склоном<br/>и морем.</h2>
                         <p>Комплекс строится на Алупкинском шоссе, рядом с пансионатом «Курпаты» и Золотым пляжем.</p>
-                        <a className="button outline" href={mapUrl} target="_blank" rel="noreferrer">Открыть карту <Arrow diagonal /></a>
+                        <div className="location-actions">
+                            <a className="button outline" href={mapUrl} target="_blank" rel="noreferrer">Открыть карту <Arrow diagonal /></a>
+                            <a className="text-link" href={asset('/assets/images/plan.webp')} target="_blank" rel="noreferrer">Генеральный план <Arrow diagonal /></a>
+                        </div>
                     </div>
-                    <figure data-reveal>
-                        <a href={asset('/assets/images/plan.webp')} target="_blank" rel="noreferrer" aria-label="Открыть генеральный план в полном размере">
-                            <img src={asset('/assets/images/plan.webp')} alt="Генеральный план комплекса из архитектурной концепции" loading="lazy" width="1900" height="1344"/>
-                            <span className="expand"><Arrow diagonal /></span>
-                        </a>
-                        <figcaption>Генеральный план · Концепция UNK</figcaption>
-                    </figure>
                 </div>
+                <LocationMap />
                 <div className="location-note" data-reveal><span>Документы и ход строительства</span><a className="text-link" href={registrySource} target="_blank" rel="noreferrer">Карточка в ЕИСЖС <Arrow diagonal /></a></div>
             </section>
 
