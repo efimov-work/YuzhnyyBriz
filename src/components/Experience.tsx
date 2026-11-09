@@ -103,7 +103,7 @@ export function Film() {
             if (event.target === event.currentTarget) dialog.current?.close();
         }}>
             <button type="button" className="circle dialog-close" onClick={() => dialog.current?.close()} aria-label="Закрыть ролик">×</button>
-            <video ref={video} controls playsInline preload="none" poster={asset('/assets/images/coast.webp')} src={asset('/assets/video/concept.mp4')} />
+            <video ref={video} controls muted playsInline preload="none" poster={asset('/assets/images/coast.webp')} src={asset('/assets/video/concept.mp4')} />
             <p>Ролик из архитектурных визуализаций UNK</p>
         </dialog>
     </>;

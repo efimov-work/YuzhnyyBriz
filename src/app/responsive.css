@@ -12,9 +12,9 @@
     .brand { font-size: 18px; gap: 6px; }
     .brand svg { width: 35px; }
     .hero-type { grid-template-columns: 1fr; gap: 20px; padding-top: 37px; }
-    .hero h1 { font-size: clamp(2.9rem, 13.8vw, 6.5rem); }
+    .hero h1 { font-size: clamp(2.55rem, 13.4vw, 6.5rem); }
     .hero-aside { display: flex; justify-content: space-between; align-items: end; }
-    .hero-aside .text-link { font-size: .88rem; }
+    .hero-aside .text-link { font-size: .88rem; white-space: nowrap; }
     .hero-figure { aspect-ratio: 1.28; border-bottom-right-radius: 52px; }
     .hero-img { object-position: 51% center; }
     .hero-photo-label { bottom: 16px; left: 14px; gap: 5px; font-size: .78rem; }

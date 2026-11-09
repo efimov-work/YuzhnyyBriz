@@ -13,7 +13,7 @@ body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.
 body:has(dialog[open]) { overflow: hidden; }
 h1, h2, h3, p, figure { margin: 0; }
 h1, h2, h3 { font-family: var(--display), sans-serif; font-weight: 300; }
-h2 { font-size: clamp(3rem, 6.9vw, 7.7rem); line-height: .98; letter-spacing: -.075em; }
+h2 { font-size: clamp(3rem, 6.9vw, 7.7rem); line-height: .98; letter-spacing: -.054em; }
 h3 { font-size: clamp(1.55rem, 2.4vw, 2.85rem); line-height: 1.04; letter-spacing: -.055em; }
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; height: auto; }
@@ -44,7 +44,7 @@ button { cursor: pointer; }
 .hero-copy { min-width: 0; animation: enter .8s both; }
 .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: clamp(12px, 1.7vw, 27px); letter-spacing: .07em; font-size: .86rem; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #778c3a; }
-.hero h1 { font-size: clamp(4.4rem, 11.3vw, 12rem); letter-spacing: -.096em; line-height: .88; white-space: nowrap; }
+.hero h1 { font-size: clamp(4.4rem, 11.3vw, 12rem); letter-spacing: -.066em; line-height: .88; white-space: nowrap; }
 .hero h1 span { color: #758838; }
 .hero-aside { display: grid; justify-items: start; gap: 14px; padding-bottom: 4px; animation: enter .8s .15s both; }
 .hero-aside p { font-size: clamp(1.12rem, 1.75vw, 1.72rem); line-height: 1.12; }
