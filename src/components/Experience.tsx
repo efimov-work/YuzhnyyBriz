@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { asset } from '@/lib/asset';
-import { gallery } from '@/lib/content';
+import { gallery, shorePhotos } from '@/lib/content';
 import { Arrow } from './Brand';
 
 export function Motion() {
@@ -14,7 +14,7 @@ export function Motion() {
                 entry.target.classList.add('revealed');
                 observer.unobserve(entry.target);
             }
-        }, { threshold: 0.12 });
+        }, { threshold: 0.08 });
         const nodes = document.querySelectorAll('[data-reveal]');
         for (const node of nodes) {
             node.classList.add('will-reveal');
@@ -85,6 +85,48 @@ export function Gallery() {
             </div>
         </dialog>
     </div>;
+}
+
+export function ShoreGallery() {
+    const [index, setIndex] = useState(0);
+    const dialog = useRef<HTMLDialogElement>(null);
+    const photo = shorePhotos[index];
+    const change = (step: number) => setIndex(i => (i + step + shorePhotos.length) % shorePhotos.length);
+    const source = `https://commons.wikimedia.org/wiki/File:${photo.source}`;
+
+    return <>
+        <div className="shore-photos">
+            {shorePhotos.map(({ file, title }, i) => <figure key={file} data-reveal="image">
+                <button type="button" onClick={() => {
+                    setIndex(i);
+                    dialog.current?.showModal();
+                }} aria-label={`Увеличить: ${title}`}>
+                    <img src={asset(`/assets/location/${file}-small.webp`)}
+                        srcSet={`${asset(`/assets/location/${file}-small.webp`)} 640w, ${asset(`/assets/location/${file}.webp`)} 1600w`}
+                        sizes={i === 0 || i === shorePhotos.length - 1 ? '(max-width: 800px) 94vw, 62vw' : '(max-width: 800px) 46vw, 30vw'}
+                        alt={title} loading="lazy" />
+                    <span className="expand"><Arrow diagonal /></span>
+                </button>
+                <figcaption><span>{String(i + 1).padStart(2, '0')}</span>{title}</figcaption>
+            </figure>)}
+        </div>
+        <dialog ref={dialog} className="media-dialog shore-dialog" aria-label="Архивные фотографии Курпат" onClick={event => {
+            if (event.target === event.currentTarget) dialog.current?.close();
+        }} onKeyDown={event => {
+            if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                event.preventDefault();
+                change(event.key === 'ArrowLeft' ? -1 : 1);
+            }
+        }}>
+            <button type="button" className="circle dialog-close" onClick={() => dialog.current?.close()} aria-label="Закрыть фото">×</button>
+            <img key={photo.file} src={asset(`/assets/location/${photo.file}.webp`)} alt={photo.title} loading="lazy" />
+            <div className="dialog-nav">
+                <button type="button" className="circle previous" onClick={() => change(-1)} aria-label="Предыдущее фото"><Arrow /></button>
+                <div aria-live="polite"><strong>{photo.title}</strong><br/><a href={source} target="_blank" rel="noreferrer">{photo.author} · Wikimedia Commons</a> · <a href={`https://creativecommons.org/licenses/${photo.license}/`} target="_blank" rel="noreferrer">Лицензия</a></div>
+                <button type="button" className="circle" onClick={() => change(1)} aria-label="Следующее фото"><Arrow /></button>
+            </div>
+        </dialog>
+    </>;
 }
 
 export function Film() {

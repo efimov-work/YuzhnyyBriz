@@ -1,7 +1,7 @@
-export function Wave({ className }: { className?: string }) {
-    return <svg className={className} viewBox="0 0 48 38" fill="none" aria-hidden="true">
-        <path d="M11 21a13 13 0 0 1 26 0M3 24c7 0 7-4 14-4s7 4 14 4 7-4 14-4M3 33c7 0 7-4 14-4s7 4 14 4 7-4 14-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-    </svg>;
+import { asset } from '@/lib/asset';
+
+export function Emblem({ className }: { className?: string }) {
+    return <img className={className} src={asset('/mark.svg')} alt="" width="64" height="64" />;
 }
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -12,6 +12,6 @@ export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
 
 export function Brand() {
     return <a className="brand" href="#top" aria-label="Южный бриз, на главную">
-        <Wave /><span>Южный<br/>бриз</span>
+        <Emblem /><span>Южный<br/>бриз</span>
     </a>;
 }

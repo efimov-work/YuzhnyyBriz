@@ -10,7 +10,7 @@
     .main-nav { grid-row: 2; grid-column: 1 / -1; justify-content: space-between; gap: 10px; padding-block: 6px 9px; font-size: .91rem; }
     .header-cta { grid-row: 1; grid-column: 2; min-height: 42px; font-size: .9rem; padding: 8px 10px 8px 13px; gap: 6px; }
     .brand { font-size: 18px; gap: 6px; }
-    .brand svg { width: 35px; }
+    .brand img { width: 38px; height: 38px; }
     .hero-type { grid-template-columns: 1fr; gap: 20px; padding-top: 37px; }
     .hero h1 { font-size: clamp(2.55rem, 13.4vw, 6.5rem); }
     .hero-aside { display: flex; justify-content: space-between; align-items: end; }
@@ -27,8 +27,6 @@
     .project-images { gap: 9px; grid-template-columns: 1.2fr 1fr; }
     .project-images figure:nth-child(2) img { border-top-right-radius: 30px; }
     .project-images img { aspect-ratio: 1.16; }
-    .features { gap: 18px; }
-    .features span { margin-bottom: 8px; }
     .gallery-frame { aspect-ratio: 1.37; border-top-right-radius: 41px; }
     .thumbs { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
     .gallery-meta strong { font-size: 1.08rem; }
@@ -36,14 +34,23 @@
     .gallery-nav { gap: 6px; }
     .gallery-nav .circle { width: 37px; height: 37px; }
     .location-grid figure a { border-top-right-radius: 37px; }
-    .callback-wave { display: none; }
+    .callback-emblem { display: none; }
     .request-form { margin-top: 12px; }
+    .walk-grid { grid-template-columns: 1fr; gap: 27px; }
+    .walk-grid article:nth-child(n) { margin-top: 0; }
+    .walk-picture { aspect-ratio: 1.65; }
+    .shore-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shore-photos figure:last-child { grid-column: span 2; }
+    .shore-photos figure:is(:first-child, :last-child) button { aspect-ratio: 1.7; }
+    .faq-grid { grid-template-columns: 1fr; }
     .footer { grid-template-columns: 1fr 1fr; gap: 16px; }
     .footer p { grid-row: 2; grid-column: 1 / -1; }
 }
 @media (max-width: 455px) {
-    .features { grid-template-columns: 1fr; }
     .location-note { align-items: start; flex-direction: column; }
+    .shore-photos .expand { width: 27px; height: 27px; right: 6px; bottom: 6px; }
+    .shore-photos .expand svg { width: 14px; }
+    .shore-photos figcaption { font-size: .78rem; gap: 5px; }
 }
 @media (max-width: 360px) {
     .wrap { width: calc(100% - 30px); }
@@ -55,5 +62,6 @@
 }
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
-    .will-reveal { opacity: 1; transform: none; }
+    .will-reveal, [data-reveal="image"].will-reveal { opacity: 1; transform: none; clip-path: none; }
+    .reading-progress { display: none; }
 }
