@@ -3,13 +3,11 @@
     .hero-figure { aspect-ratio: 2.03; border-bottom-right-radius: 72px; }
     .hero h1 { font-size: clamp(4.2rem, 11.1vw, 8rem); }
     .hero-aside { gap: 8px; }
-    .map-places svg { display: none; }
+    .map-places a > svg { display: none; }
 }
-@media (max-width: 965px) {
+@media (max-width: 1145px) {
     .map-caption > span:first-child { display: none; }
     .map-scroll-hint { display: inline-flex; }
-    .map-pin-project .map-pin-dot { width: 27px; height: 27px; box-shadow: 0 0 0 3px #dce69fa8; }
-    .map-pin-druzhba .map-pin-dot { width: 17px; height: 17px; }
 }
 @media (max-width: 800px) {
     .wrap { width: calc(100% - 38px); }

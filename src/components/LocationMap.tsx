@@ -5,6 +5,23 @@ import { asset } from '@/lib/asset';
 import { MAP_HEIGHT, MAP_PLACES, MAP_ROTATION, MAP_SCALE, MAP_WIDTH, placeMapUrl, projectMap } from '@/lib/map';
 import { Arrow, Emblem } from './Brand';
 
+const digits = [
+    'M3.5 1C1.7 1 1 2.6 1 5s.7 4 2.5 4S6 7.4 6 5 5.3 1 3.5 1Z',
+    'M1.3 3 3.5 1v8M1 9h5',
+    'M1 3.1C1 1.8 2 1 3.5 1S6 1.9 6 3.1C6 5.2 1 6.5 1 9h5',
+    'M1.2 2.2C2 .5 6 .5 6 3c0 1.3-1.2 2-2.8 2C4.8 5 6 5.7 6 7c0 2.5-4 2.5-4.8.8',
+    'M4.8 9V1L1 6.5h5',
+    'M6 1H1.6l-.5 3.7C2.3 3.7 6 3.9 6 6.6c0 2.8-3.8 2.9-5 1.4'
+];
+
+function MapNumber({ number }: { number: number }) {
+    return <svg className="map-number" viewBox="0 0 14 10" width="14" height="10" fill="none" aria-hidden="true">
+        <g stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" strokeLinejoin="round">
+            <path d={digits[0]} /><path d={digits[number]} transform="translate(7)" />
+        </g>
+    </svg>;
+}
+
 export default function LocationMap() {
     const viewport = useRef<HTMLDivElement>(null);
 
@@ -44,7 +61,7 @@ export default function LocationMap() {
                     const { x, y } = projectMap(place.latitude, place.longitude);
                     return <a key={place.id} className={`map-pin map-pin-${place.id}`} href={placeMapUrl(place)} target="_blank" rel="noreferrer"
                         style={{ left: `${x / MAP_WIDTH * 100}%`, top: `${y / MAP_HEIGHT * 100}%` }} aria-label={`${place.name}. Открыть на карте`}>
-                        <span className="map-pin-dot">{index === 0 ? <Emblem /> : String(index + 1).padStart(2, '0')}</span>
+                        <span className="map-pin-dot">{index === 0 ? <Emblem /> : <MapNumber number={index + 1} />}</span>
                         <span className="map-pin-name">{place.name}</span>
                     </a>;
                 })}
@@ -55,7 +72,7 @@ export default function LocationMap() {
             <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a>
         </figcaption>
         <div className="map-places">{MAP_PLACES.map((place, index) => <a key={place.id} href={placeMapUrl(place)} target="_blank" rel="noreferrer">
-            <span>{String(index + 1).padStart(2, '0')}</span>
+            <span><MapNumber number={index + 1} /></span>
             <div><strong>{place.name}</strong><small>{place.detail}</small></div><Arrow diagonal />
         </a>)}</div>
     </figure>;
