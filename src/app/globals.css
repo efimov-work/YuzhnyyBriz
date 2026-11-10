@@ -73,8 +73,9 @@ button { cursor: pointer; }
 
 .architecture { background: #e8eddd; }
 .architecture-grid { display: grid; grid-template-columns: 1.38fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: start; margin-top: clamp(25px, 4vw, 56px); }
-.architecture-grid figure a { position: relative; display: block; overflow: hidden; border: 1px solid var(--edge); border-radius: 5px 42px 5px 5px; background: white; }
-.architecture-grid figure a:hover .expand { background: var(--lime); }
+.architecture-grid figure > a { position: relative; display: block; overflow: hidden; border: 1px solid var(--edge); border-radius: 5px 42px 5px 5px; background: white; }
+.architecture-grid figure > a:hover .expand { background: var(--lime); }
+.architecture-grid figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 16px; }
 .building-types { padding: 0; margin: 0; list-style: none; }
 .building-types li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding-block: 14px; border-top: 1px solid var(--edge); }
 .building-types li > span { color: var(--muted); font-size: .82rem; }

@@ -79,15 +79,18 @@ export default function Home() {
                     <div className="section-tag" data-reveal><span>03</span> Архитектура</div>
                     <div className="section-heading" data-reveal>
                         <h2>Четыре типа<br/>корпусов</h2>
-                        <p>В концепции UNK 22 секции распределены по склону. Схема показывает, как группы домов связаны с шоссе, аллеями и берегом.</p>
+                        <p>В концепции UNK 22 секции распределены по склону. Дома вдоль шоссе, на склоне и у воды образуют четыре группы.</p>
                     </div>
                     <div className="architecture-grid">
                         <figure data-reveal="image">
-                            <a href={asset('/assets/images/building-types.webp')} target="_blank" rel="noreferrer" aria-label="Открыть схему типов застройки">
-                                <img src={asset('/assets/images/building-types.webp')} alt="Схема четырёх групп корпусов Южного бриза на склоне" width="1750" height="1238" loading="lazy" />
+                            <a href={asset('/assets/images/terraces.webp')} target="_blank" rel="noreferrer" aria-label="Увеличить визуализацию террас">
+                                <img src={asset('/assets/images/terraces.webp')} alt="Террасы корпусов и лестница на склоне" width="1920" height="1154" loading="lazy" />
                                 <span className="expand" aria-hidden="true"><Arrow diagonal /></span>
                             </a>
-                            <figcaption>Схема типов застройки · Концепция UNK</figcaption>
+                            <figcaption>
+                                <span>Террасы на склоне · Визуализация UNK</span>
+                                <a className="text-link" href={asset('/assets/images/building-types.webp')} target="_blank" rel="noreferrer">Схема корпусов <Arrow diagonal /></a>
+                            </figcaption>
                         </figure>
                         <ol className="building-types" data-reveal>
                             {buildingTypes.map(({ title, text }, index) => <li key={title}>
