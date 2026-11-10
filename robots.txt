@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://efimov-work.github.io/YuzhnyyBriz/sitemap.xml

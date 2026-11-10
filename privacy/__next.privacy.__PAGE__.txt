@@ -1,0 +1,26 @@
+1:"$Sreact.fragment"
+2:I[5001,[],""]
+3:I[7149,[],""]
+a:I[3708,[],"OutletBoundary"]
+b:"$Sreact.suspense"
+e:"ViewportBoundary"
+f:I[3708,[],"$e"]
+10:"MetadataBoundary"
+11:I[3708,[],"$10"]
+12:I[7485,[],"IconMark"]
+:HL["/YuzhnyyBriz/_next/static/css/c1bd555dab327ef8.css","style"]
+5:X
+8:X
+8:C
+9:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","main",null,{"className":"wrap privacy","children":[["$","a",null,{"className":"text-link","href":"/YuzhnyyBriz/","children":"← На главную"}],["$","h1",null,{"children":"Обработка данных"}],["$","p",null,{"children":"Для обратного звонка форма запрашивает имя и телефон. При включённом приёме заявок эти сведения обрабатываются для ответа на запрос и могут быть переданы настроенному получателю заявок."}],["$","p",null,{"children":"В демонстрационном режиме форма проверяет заполнение полей и показывает результат без отправки данных."}]]}],null,["$","$La",null,{"children":["$","$b",null,{"name":"Next.MetadataOutlet","children":"$@c"}]}]]}],"p":"$@d","v":null,"s":"$5"}}]]
+6:[["children",{"s":"privacy","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"p":"$@7","v":"$8","s":"$5"},"c":"$Q9"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/YuzhnyyBriz/_next/static/css/c1bd555dab327ef8.css","precedence":"next"}]],["$","html",null,{"lang":"ru","className":"__variable_a141a4 __variable_d2a550","children":["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]}]]}],"p":"$@4","v":null,"s":"$5"},"c":"$Q6"},"h":{"r":["$","$1","h",{"children":[null,["$","$Lf",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L11",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$b",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Обработка данных | Южный бриз"}],["$","meta","1",{"name":"description","content":"Жилой комплекс «Южный бриз» на Алупкинском шоссе в Курпатах. Архитектурная концепция UNK, виды на море, галерея и заявка на обратный звонок."}],["$","link","2",{"rel":"manifest","href":"/YuzhnyyBriz/manifest.webmanifest"}],["$","meta","3",{"name":"robots","content":"noindex, nofollow"}],["$","meta","4",{"property":"og:title","content":"Южный бриз | Жилой комплекс у моря в Курпатах"}],["$","meta","5",{"property":"og:description","content":"Жилой комплекс «Южный бриз» на Алупкинском шоссе в Курпатах. Архитектурная концепция UNK, виды на море, галерея и заявка на обратный звонок."}],["$","meta","6",{"property":"og:url","content":"https://efimov-work.github.io/YuzhnyyBriz/"}],["$","meta","7",{"property":"og:site_name","content":"Южный бриз"}],["$","meta","8",{"property":"og:locale","content":"ru_RU"}],["$","meta","9",{"property":"og:image","content":"https://efimov-work.github.io/YuzhnyyBriz/assets/images/share.jpg"}],["$","meta","10",{"property":"og:image:width","content":"1200"}],["$","meta","11",{"property":"og:image:height","content":"630"}],["$","meta","12",{"property":"og:image:alt","content":"Архитектурная визуализация Южного бриза со стороны моря"}],["$","meta","13",{"property":"og:type","content":"website"}],["$","meta","14",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","15",{"name":"twitter:title","content":"Южный бриз | Жилой комплекс у моря в Курпатах"}],["$","meta","16",{"name":"twitter:description","content":"Жилой комплекс «Южный бриз» на Алупкинском шоссе в Курпатах. Архитектурная концепция UNK, виды на море, галерея и заявка на обратный звонок."}],["$","meta","17",{"name":"twitter:image","content":"https://efimov-work.github.io/YuzhnyyBriz/assets/images/share.jpg"}],["$","link","18",{"rel":"icon","href":"/YuzhnyyBriz/mark.svg"}],["$","$L12","19",{}]]}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":"$@13","v":null,"s":"$5"}},"a":"$@14","u":"$@15","b":"DJDj9gNjkpbucOiI5pRzz"}
+c:null
+5:300
+15:true
+5:C
+14:0
+7:"$undefined"
+4:"$undefined"
+13:"$undefined"
+d:"$undefined"
