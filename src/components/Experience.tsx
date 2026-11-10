@@ -33,14 +33,13 @@ export function Gallery() {
     const [slides, setSlides] = useState({ active: 0, previous: -1 });
     const pictures = useRef<(HTMLImageElement | null)[]>([]);
     const [expanded, setExpanded] = useState(false);
-    const [autoplay, setAutoplay] = useState(true);
     const [inView, setInView] = useState(false);
     const [motionAllowed, setMotionAllowed] = useState(false);
     const frame = useRef<HTMLButtonElement>(null);
     const dialog = useRef<HTMLDialogElement>(null);
     const start = useRef<number | null>(null);
     const current = gallery[index];
-    const rotating = autoplay && inView && motionAllowed && !expanded;
+    const rotating = inView && motionAllowed && !expanded;
 
     useEffect(() => {
         const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -107,7 +106,6 @@ export function Gallery() {
             <div className="gallery-meta">
                 <div aria-live={rotating ? "off" : "polite"}><strong>{current.title}</strong><p>{current.text}</p></div>
                 <div className="gallery-nav">
-                    {motionAllowed && <button type="button" className="circle" onClick={() => setAutoplay(value => !value)} aria-label={autoplay ? 'Приостановить смену кадров' : 'Запустить смену кадров'}><span aria-hidden="true">{autoplay ? 'Ⅱ' : '▷'}</span></button>}
                     <button type="button" className="circle previous" onClick={() => change(-1)} aria-label="Предыдущая визуализация"><Arrow /></button>
                     <span className="counter">{String(index + 1).padStart(2, '0')} / {String(gallery.length).padStart(2, '0')}</span>
                     <button type="button" className="circle" onClick={() => change(1)} aria-label="Следующая визуализация"><Arrow /></button>
