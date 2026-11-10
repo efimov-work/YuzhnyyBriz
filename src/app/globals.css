@@ -71,11 +71,24 @@ button { cursor: pointer; }
 .project-images img { aspect-ratio: 1.62; object-fit: cover; border-radius: 4px; }
 .project-images figure:nth-child(2) img { aspect-ratio: 1.25; border-radius: 4px 60px 4px 4px; }
 
+.architecture { background: #e8eddd; }
+.architecture-grid { display: grid; grid-template-columns: 1.38fr 1fr; gap: clamp(24px, 4vw, 60px); align-items: start; margin-top: clamp(25px, 4vw, 56px); }
+.architecture-grid figure a { position: relative; display: block; overflow: hidden; border: 1px solid var(--edge); border-radius: 5px 42px 5px 5px; background: white; }
+.architecture-grid figure a:hover .expand { background: var(--lime); }
+.building-types { padding: 0; margin: 0; list-style: none; }
+.building-types li { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding-block: 14px; border-top: 1px solid var(--edge); }
+.building-types li > span { color: var(--muted); font-size: .82rem; }
+.building-types h3 { font-size: clamp(1.3rem, 2vw, 2.2rem); }
+.building-types p { margin-top: 5px; color: var(--muted); }
+
 .gallery-section, .callback { background: var(--ink); color: var(--light); }
 .gallery-section .section-heading p, .callback-grid > div > p { color: #d2ddd0; }
 .gallery { margin-top: clamp(28px, 4vw, 65px); }
 .gallery-frame { display: block; position: relative; width: 100%; padding: 0; border: 0; overflow: hidden; background: #385249; aspect-ratio: 2; border-radius: 5px 70px 5px 5px; touch-action: pan-y; }
-.gallery-frame img { height: 100%; object-fit: cover; animation: photo-swap .65s cubic-bezier(.2,.75,.3,1) both; transition: scale .55s; }
+.gallery-frame img { position: absolute; inset: 0; height: 100%; object-fit: cover; opacity: 0; transition: scale .55s; }
+.gallery-frame img[data-layer="previous"] { z-index: 1; opacity: 1; }
+.gallery-frame img[data-layer="active"] { z-index: 2; opacity: 1; transition: opacity 1s ease-in-out, scale .55s; }
+.gallery-frame .expand { z-index: 3; }
 .gallery-frame:hover img { scale: 1.035; }
 .expand { display: grid; place-items: center; position: absolute; right: 17px; bottom: 17px; width: 45px; height: 45px; border-radius: 50%; color: var(--ink); background: var(--paper); transition: background .25s; }
 .gallery-frame:hover .expand { background: var(--lime); }

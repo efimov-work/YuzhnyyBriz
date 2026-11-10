@@ -3,7 +3,7 @@ import { Film, Gallery, Motion, ShoreGallery } from '@/components/Experience';
 import Request from '@/components/Request';
 import LocationMap from '@/components/LocationMap';
 import { asset } from '@/lib/asset';
-import { features, mapUrl, projectSource, questions, registrySource } from '@/lib/content';
+import { buildingTypes, features, mapUrl, projectSource, questions, registrySource } from '@/lib/content';
 import { jsonLd } from '@/lib/seo';
 
 export default function Home() {
@@ -74,16 +74,41 @@ export default function Home() {
                 </div>
             </section>
 
+            <section className="architecture section" id="architecture">
+                <div className="wrap">
+                    <div className="section-tag" data-reveal><span>03</span> Архитектура</div>
+                    <div className="section-heading" data-reveal>
+                        <h2>Четыре типа<br/>корпусов</h2>
+                        <p>В концепции UNK 22 секции распределены по склону. Схема показывает, как группы домов связаны с шоссе, аллеями и берегом.</p>
+                    </div>
+                    <div className="architecture-grid">
+                        <figure data-reveal="image">
+                            <a href={asset('/assets/images/building-types.webp')} target="_blank" rel="noreferrer" aria-label="Открыть схему типов застройки">
+                                <img src={asset('/assets/images/building-types.webp')} alt="Схема четырёх групп корпусов Южного бриза на склоне" width="1750" height="1238" loading="lazy" />
+                                <span className="expand" aria-hidden="true"><Arrow diagonal /></span>
+                            </a>
+                            <figcaption>Схема типов застройки · Концепция UNK</figcaption>
+                        </figure>
+                        <ol className="building-types" data-reveal>
+                            {buildingTypes.map(({ title, text }, index) => <li key={title}>
+                                <span aria-hidden="true">0{index + 1}</span>
+                                <div><h3>{title}</h3><p>{text}</p></div>
+                            </li>)}
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
             <section className="gallery-section section" id="gallery">
                 <div className="wrap">
-                    <div className="section-tag" data-reveal><span>03</span> Галерея</div>
+                    <div className="section-tag" data-reveal><span>04</span> Галерея</div>
                     <div className="section-heading" data-reveal><h2>Восемь взглядов<br/>на побережье</h2><p>Виды из архитектурной концепции UNK. Они показывают, как может выглядеть комплекс.</p></div>
                     <Gallery />
                 </div>
             </section>
 
             <section className="location wrap section" id="location">
-                <div className="section-tag" data-reveal><span>04</span> Расположение</div>
+                <div className="section-tag" data-reveal><span>05</span> Расположение</div>
                 <div className="location-grid">
                     <h2 data-reveal>Курпаты.<br/>Между склоном и морем.</h2>
                     <div data-reveal>
@@ -100,14 +125,14 @@ export default function Home() {
 
             <section className="shore-section section" id="coast">
                 <div className="wrap">
-                    <div className="section-tag" data-reveal><span>05</span> Фотографии места</div>
+                    <div className="section-tag" data-reveal><span>06</span> Фотографии места</div>
                     <div className="section-heading" data-reveal><h2>Курпаты<br/>в кадре</h2><p>Восемь архивных фотографий берега, Золотого пляжа и соседнего пансионата «Дружба». Нажмите на кадр, чтобы рассмотреть детали.</p></div>
                     <ShoreGallery />
                 </div>
             </section>
 
             <section className="faq wrap section" id="questions">
-                <div className="section-tag" data-reveal><span>06</span> Вопросы о покупке</div>
+                <div className="section-tag" data-reveal><span>07</span> Вопросы о покупке</div>
                 <div className="faq-grid">
                     <h2 data-reveal>Что уточнить<br/>перед выбором</h2>
                     <div className="faq-list" data-reveal>
@@ -122,7 +147,7 @@ export default function Home() {
             <section className="callback section" id="callback">
                 <div className="wrap callback-grid">
                     <div data-reveal>
-                        <div className="section-tag"><span>07</span> Обратный звонок</div>
+                        <div className="section-tag"><span>08</span> Обратный звонок</div>
                         <h2>Ваш адрес<br/>у моря</h2>
                         <p>Оставьте номер, чтобы узнать о планировках, актуальных ценах и условиях покупки.</p>
                         <Emblem className="callback-emblem" />

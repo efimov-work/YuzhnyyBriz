@@ -30,6 +30,8 @@ export function Motion() {
 
 export function Gallery() {
     const [index, setIndex] = useState(0);
+    const [slides, setSlides] = useState({ active: 0, previous: -1 });
+    const pictures = useRef<(HTMLImageElement | null)[]>([]);
     const [expanded, setExpanded] = useState(false);
     const [autoplay, setAutoplay] = useState(true);
     const [inView, setInView] = useState(false);
@@ -60,10 +62,20 @@ export function Gallery() {
             if (!document.hidden) setIndex(i => (i + 1) % gallery.length);
         }, 5000);
         return () => window.clearInterval(timer);
-    }, [rotating]);
+    }, [index, rotating]);
+
+    useEffect(() => {
+        if (slides.active === index) return;
+        const picture = pictures.current[index];
+        if (!picture) return;
+        let cancelled = false;
+        void picture.decode().then(() => {
+            if (!cancelled) setSlides({ active: index, previous: slides.active });
+        }).catch(() => undefined);
+        return () => { cancelled = true; };
+    }, [index, slides.active]);
 
     function change(step: number) {
-        setAutoplay(false);
         setIndex(i => (i + step + gallery.length) % gallery.length);
     }
 
@@ -87,7 +99,9 @@ export function Gallery() {
                     if (Math.abs(distance) > 45) change(distance > 0 ? -1 : 1);
                     start.current = null;
                 }}>
-                <img key={current.file} src={asset(`/assets/images/${current.file}.webp`)} alt={current.title} loading="lazy" />
+                {gallery.map(({ file }, i) => <img key={file} ref={element => { pictures.current[i] = element; }}
+                    data-layer={i === slides.active ? 'active' : i === slides.previous ? 'previous' : 'hidden'}
+                    src={asset(`/assets/images/${file}.webp`)} alt="" loading="lazy" decoding="async" />)}
                 <span className="expand" aria-hidden="true"><Arrow diagonal /></span>
             </button>
             <div className="gallery-meta">
@@ -101,7 +115,7 @@ export function Gallery() {
             </div>
         </div>
         <div className="thumbs" aria-label="Выбрать визуализацию">
-            {gallery.map(({ file, title }, i) => <button type="button" key={file} aria-label={title} aria-pressed={i === index} onClick={() => { setAutoplay(false); setIndex(i); }}>
+            {gallery.map(({ file, title }, i) => <button type="button" key={file} aria-label={title} aria-pressed={i === index} onClick={() => setIndex(i)}>
                 <img src={asset(`/assets/images/thumb-${file}.webp`)} alt="" loading="lazy" />
             </button>)}
         </div>
